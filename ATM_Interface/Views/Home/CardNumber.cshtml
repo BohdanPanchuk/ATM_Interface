@@ -1,0 +1,50 @@
+﻿@using ATM_Interface.Models;
+@model ATM_Interface.Models.Card
+
+@{
+    ViewBag.Title = "Card number page";
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-3">
+        <div class="CardNumberForm">
+            <form class="form-horizontal" action='@Url.Action("CheckCardNumber", "Home")' method="post">
+                <div class="form-group">
+                    <div>
+                        @Html.DisplayNameFor(model => model.CardNumber)
+                        <input class="inputCardNumber form-control" type="text" name="cardNumber" id="cardNumber" />
+                    </div>
+
+                    <div>
+                        <input class="btn btn-primary" type="submit" value="OK" />
+                        <input class="btn btn-danger" type="reset" value="Reset" />
+                    </div>
+                </div>
+            </form>
+
+            <div class="inputKeyboard">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Disable keyboard
+    $(".inputCardNumber").keydown(false);
+
+    // Create "virtual" keyboard
+    for (let i = 9; i >= 0; i--) {
+        let html = "<button id='" + i + "' class='keyboardButtons'>" + i + "</button>";
+        $(html).insertAfter('.inputKeyboard');
+        html = "";
+    }
+
+    // Entering card number
+    let $buttons = $(".keyboardButtons");
+
+    $buttons.on('click', function (e) {
+        $('.inputCardNumber').val($('.inputCardNumber').val() + this.id);
+    });
+</script>

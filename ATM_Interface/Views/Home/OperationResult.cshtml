@@ -1,0 +1,16 @@
+﻿@using ATM_Interface.Models;
+@model ATM_Interface.Models.OperationResult
+
+@{
+    Layout = null;
+}
+
+<div>
+    <h3>Card number: @Model.CardNumber </h3>
+    <h3>Date: @Model.Date</h3>
+    <h3>Withdrawn money: @Model.WithdrawnMoney</h3>
+    <h3>Available money: @Model.AvailableMoney</h3>
+
+    @Html.ActionLink("Back", "CardOperations")
+    @Html.ActionLink("Exit", "CardNumber")
+</div>

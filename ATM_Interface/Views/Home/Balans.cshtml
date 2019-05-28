@@ -1,0 +1,15 @@
+﻿@using ATM_Interface.Models;
+@model ATM_Interface.Models.Balans
+
+@{
+    Layout = null;
+}
+
+<div>
+    <h3>Card number: @Model.CardNumber</h3>
+    <h3>Money: @Model.AvailableMoney</h3>
+    <h3>Date (UTC): @Model.Date</h3>
+
+    @Html.ActionLink("Back", "CardOperations")
+    @Html.ActionLink("Exit", "CardNumber")
+</div>

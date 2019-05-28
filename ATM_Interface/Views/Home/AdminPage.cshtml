@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "AdminPage";
+}
+
+<h3>@Html.ActionLink("Start", "CardNumber")</h3>
+<br />
+
+<table border="1">
+    <tr>
+        <th>Card ID</th>
+        <th>Card Number</th>
+        <th>PIN</th>
+        <th>Available Money</th>
+        <th>Card Status</th>
+    </tr>
+    
+    @foreach (var card in ViewBag.Cards)
+    {
+        <tr>
+            <td align="center">@card.Id</td>
+            <td align="center">@card.CardNumber</td>
+            <td align="center">@card.PIN</td>
+            <td align="center">@card.AvailableMoney</td>
+            <td align="center">@card.Status</td>
+            <td>@Html.ActionLink("Edit card", "EditCard", new { id = @card.Id })</td>
+            <td><button type="button" class="btn btn-danger" onclick="DeleteCard('@card.Id')">Delete card</button></td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Add Card", "AddCard")
+
+<script type="text/javascript">
+    function DeleteCard(cardId) {
+        let result = confirm("Delete this card?");
+
+        if (result == true) {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/Home/DeleteCard",
+                data: {
+                    id: cardId
+                },
+                success: function () {
+                    window.location = "/";
+                }
+            });
+        }
+    }
+</script>
